@@ -15,13 +15,13 @@ Este proyecto es una aplicación Node.js utilizando Express que implementa la cr
 1. Clona el repositorio:
 
 ```bash
-git clone <URL_DEL_REPOSITORIO>
+git clone https://github.com/FabioDrizZt/Ejercitacion-Manejo-de-Cookies-sesiones
 ```
 
 2. Navega al directorio del proyecto:
 
 ```bash
-cd <NOMBRE_DEL_PROYECTO>
+cd Ejercitacion-Manejo-de-Cookies-sesiones
 ```
 
 3. Instala las dependencias:
