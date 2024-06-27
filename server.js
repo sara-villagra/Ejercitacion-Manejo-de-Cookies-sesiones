@@ -20,6 +20,9 @@ app.get('/', (req, res) => {
    `<p>Si ingresas por primera vez, dirígete a <strong>'/login'</strong> e identifícate.</p>`
   )
 })
+app.get('/login', (req, res) => {
+ res.render('login')
+})
 
 app.post('/login', (req, res) => {
  const { email, password } = req.body || ''
