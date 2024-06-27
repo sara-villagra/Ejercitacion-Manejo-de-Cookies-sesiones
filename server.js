@@ -26,15 +26,12 @@ app.post('/login', (req, res) => {
    .status(401)
    .json({ error: 'Usuario no autorizado. Valide sus credenciales.' })
  } else {
-  let respuesta = usuarios.find((usr) => usr.email === email)
+  let respuesta = usuarios.find(
+   (usr) => usr.email === email && usr.password === password
+  )
   if (respuesta) {
-   //Crear la clave 'cookieLogin' y establecer su valor desde el 'nombre' del usuario identificado///
-
-   res.cookie('cookieLogin', respuesta)
-
-   //La creación de la cookie debe hacerse antes de la siguiente línea de código.
-   //Cuando se ejecuta res.status(...) y se envía la respuesta al cliente, el endpoint finaliza el procesamiento del código restante.
-   res.status(200).json({ mensaje: `Bienvenid@ ${respuesta.nombre}` })
+   res.cookie('cookieLogin', respuesta.nombre)
+   res.status(200).json({ mensaje: `Bienvenido ${respuesta.nombre}` })
   } else {
    res
     .status(401)
@@ -44,7 +41,10 @@ app.post('/login', (req, res) => {
 })
 
 app.get('/contenido-oculto', (req, res) => {
- //Crear una constante y validar de que existe 'cookieLogin' para así enviarle el contenido oculto
+ //Crear una constante y validar de que existe 'cookieLogin' para así enviarle el contenido oculto:
+ const cookieLogin = req.cookies.cookieLogin
+ console.log(cookieLogin)
+ //Validar si existe la cookie para enviarle el contenido oculto:
 
  if (cookieLogin) {
   res.status(200).send(contenidoOculto)
@@ -63,5 +63,5 @@ app.get('/eliminarcookie', (req, res) => {
 })
 
 app.listen(PORT, () => {
- console.log('Server listening on port:', PORT)
+ console.log(`Server listening on http://localhost:${PORT}`)
 })
